@@ -1,43 +1,27 @@
 package app.fares.taxi;
 
-public class ConsoleInterface extends ApplicationManager{
+public class ConsoleInterface extends ApplicationManager {
 
     public void mainLoop() throws Exception {
         while (true) {
-            System.out.println(messagesText.getPleaseTypeCommand());
-            System.out.println(messagesText.getTypeHelpToSeeCommands());
+            System.out.println(MessagesText.PLEASE_TYPE_COMMAND);
+            System.out.println(MessagesText.TYPE_HELP_TO_SEE_COMMANDS);
             String action = driverAccountHelper.in.nextLine();
-            switch (action.toLowerCase()) {
-                case "help":
-                    displayActionsList();
-                    break;
-                case "print":
-                    displayDriversList();
-                    break;
-                case "sign in":
-                    signOnAsDriver();
-                    break;
-                case "sign out":
-                    signOutFromDriverAccount();
-                    break;
-                case "add":
-                    driverAccountHelper.addNewDriver();
-                    break;
-                case "edit":
-                    driverAccountHelper.editDriver();
-                    break;
-                case "delete":
-                    driverAccountHelper.deleteDriver();
-                    break;
-                case "calculate":
-                    driverAccountHelper.calculateTheCheapestFare();
-                    break;
-                case "history":
-                    driverAccountHelper.viewCostsHistory();
-                    break;
-                case "exit":
+            action = action.toLowerCase();
+            switch (action) {
+                case MessagesText.COMMAND_TO_DISPLAY_COMMANDS -> displayActionsList();
+                case MessagesText.COMMAND_TO_DISPLAY_DRIVERS -> displayDriversList();
+                case MessagesText.COMMAND_TO_SIGN_IN -> signInAsDriver();
+                case MessagesText.COMMAND_TO_SIGN_OUT -> signOutFromDriverAccount();
+                case MessagesText.COMMAND_TO_ADD_DRIVER -> driverAccountHelper.addNewDriver();
+                case MessagesText.COMMAND_TO_EDIT_ACCOUNT -> driverAccountHelper.editDriver();
+                case MessagesText.COMMAND_TO_DELETE_ACCOUNT -> driverAccountHelper.deleteDriver();
+                case MessagesText.COMMAND_TO_CALCULATE_FARE -> driverAccountHelper.calculateTheCheapestFare();
+                case MessagesText.COMMAND_TO_DISPLAY_COSTS_HISTORY -> driverAccountHelper.viewCostsHistory();
+                case MessagesText.COMMAND_TO_EXIT_APP -> {
                     finishAppForTaxi();
                     return;
+                }
             }
             System.out.println(" ");
         }

@@ -8,22 +8,21 @@ import java.util.List;
 import java.util.Scanner;
 
 public class DriverAccountHelper {
-    private MessagesText messagesText;
+
     private ArrayList<DriverData> driversInfo;
     Scanner in = new Scanner(System.in);
     DriverData signedOnDriver;
     int driverNumber;
 
-    public DriverAccountHelper(MessagesText messagesText, int driverNumber, ArrayList<DriverData> driversInfo) {
+    public DriverAccountHelper(int driverNumber, ArrayList<DriverData> driversInfo) {
 
-        this.messagesText = messagesText;
         this.driverNumber = driverNumber;
         this.driversInfo = driversInfo;
     }
 
     public boolean isUserSignedOn() {
         if (signedOnDriver == null) {
-            System.out.println(messagesText.getPleaseSignIn());
+            System.out.println(MessagesText.PLEASE_SIGN_IN);
             return false;
         } else {
             return true;
@@ -84,7 +83,7 @@ public class DriverAccountHelper {
                     try {
                         signedOnDriver.setBaseFarePrice(Integer.parseInt(in.nextLine()));
                     } catch (NumberFormatException e) {
-                        System.out.println("Base fare price was not changed due to incorrect value");
+                        System.out.println(MessagesText.INCORRECT_PRICE_ERROR);
                     }
                     break;
                 case "distance":
@@ -92,7 +91,7 @@ public class DriverAccountHelper {
                     try {
                         signedOnDriver.setBaseFareDistance(Double.parseDouble(in.nextLine()));
                     } catch (NumberFormatException e) {
-                        System.out.println("Base fare distance was not changed due to incorrect value");
+                        System.out.println(MessagesText.INCORRECT_DISTANCE_ERROR);
                     }
                     break;
                 case "save":
@@ -119,7 +118,7 @@ public class DriverAccountHelper {
                 System.out.println(calculatedFareForTravel);
             }
         } else {
-            System.out.println(messagesText.getNoCalculatedCosts());
+            System.out.println(MessagesText.NO_CALCULATED_COSTS);
         }
 
     }
@@ -128,7 +127,7 @@ public class DriverAccountHelper {
         if (!isUserSignedOn()) {
             return;
         }
-        System.out.println(messagesText.getTypePathToCSVFile());
+        System.out.println(MessagesText.TYPE_PATH_TO_CSV_FILE);
         String pathToCSVFile = in.nextLine();
         List<String> fileLines = Files.readAllLines(Path.of(pathToCSVFile));
         for (String line : fileLines) {
@@ -138,12 +137,12 @@ public class DriverAccountHelper {
                 oneLineValues[i] = Double.parseDouble(csvFileOneLineInfo[i]);
             }
             TravelData travelData = new TravelData(oneLineValues[0], oneLineValues[1], oneLineValues[2]);
-            double distanceTraveledUnits = signedOnDriver.getBaseFareDistance() - travelData.getDistanceTraveled();
+            double distanceTraveledUnits = travelData.getDistanceTraveled() - signedOnDriver.getBaseFareDistance();
             double fare;
             if (travelData.getDistanceTraveled() > signedOnDriver.getBaseFareDistance()) {
-                fare = signedOnDriver.getBaseFarePrice() + (distanceTraveledUnits * travelData.getCostPerDistanceTraveled());
+                fare = signedOnDriver.getBaseFarePrice() + (distanceTraveledUnits / travelData.getTraveledUnit() * travelData.getCostPerDistanceTraveled());
             } else {
-                fare = signedOnDriver.getBaseFarePrice() + distanceTraveledUnits;
+                fare = signedOnDriver.getBaseFarePrice();
             }
             signedOnDriver.getCalculatedCosts().add(fare);
             System.out.println(fare);
@@ -155,7 +154,7 @@ public class DriverAccountHelper {
             return;
         }
         System.out.println("Do you really want to delete your account?");
-        System.out.println("Type 'yes' to edit.");
+        System.out.println("Type 'yes' to confirm deletion.");
         String answer = in.nextLine();
         if (answer.equalsIgnoreCase("yes")) {
             driversInfo.remove(driverNumber);

@@ -3,16 +3,15 @@ package app.fares.taxi;
 import java.util.ArrayList;
 
 public class ApplicationManager {
-    MessagesText messagesText = new MessagesText();
     int driverNumber;
     ArrayList<DriverData> driversInfo = new ArrayList<>();
 
 
-    protected DriverAccountHelper driverAccountHelper = new DriverAccountHelper(messagesText, driverNumber, driversInfo);
+    protected DriverAccountHelper driverAccountHelper = new DriverAccountHelper(driverNumber, driversInfo);
 
-    public void signOnAsDriver() {
+    public void signInAsDriver() {
         if (driversInfo.size() == 0) {
-            System.out.println(messagesText.getNoDriverExists());
+            System.out.println(MessagesText.NO_DRIVER_EXISTS);
             return;
         }
         System.out.println("Type the index of driver to sign in account");
@@ -35,25 +34,26 @@ public class ApplicationManager {
 
     protected void signOutFromDriverAccount() {
         driverAccountHelper.signedOnDriver = null;
-        System.out.println(messagesText.getPleaseSignIn());
+        System.out.println(MessagesText.PLEASE_SIGN_IN);
     }
 
     protected void finishAppForTaxi() {
-        System.out.println(messagesText.getExitApp());
+        System.out.println(MessagesText.EXIT_APP);
     }
 
     protected void displayActionsList() {
         if (!driverAccountHelper.isUserSignedOn()) {
-            System.out.println(messagesText.getTypeCommandToSignIn());
+            System.out.println(MessagesText.TYPE_COMMAND_TO_SIGN_IN);
         } else {
-            System.out.println(messagesText.getTypeCommandToEditDriver());
-            System.out.println(messagesText.getTypeCommandToDeleteDriver());
-            System.out.println(messagesText.getTypeCommandToCalculateFare());
-            System.out.println(messagesText.getTypeCommandToSeeHistory());
-            System.out.println(messagesText.getTypeCommandToSignOut());
+            System.out.println(MessagesText.TYPE_COMMAND_TO_EDIT_DRIVER);
+            System.out.println(MessagesText.TYPE_COMMAND_TO_DELETE_DRIVER);
+            System.out.println(MessagesText.TYPE_COMMAND_TO_CALCULATE_FARE);
+            System.out.println(MessagesText.TYPE_COMMAND_TO_SEE_HISTORY);
+            System.out.println(MessagesText.TYPE_COMMAND_TO_SIGN_OUT);
         }
-        System.out.println(messagesText.getTypeCommandToSeeAllDrivers());
-        System.out.println(messagesText.getTypeCommandToRegisterNewDriver());
+        System.out.println(MessagesText.TYPE_COMMAND_TO_SEE_ALL_DRIVERS);
+        System.out.println(MessagesText.TYPE_COMMAND_TO_ADD_DRIVER);
+        System.out.println(MessagesText.TYPE_COMMAND_TO_FINISH_APP);
     }
 
     public void displayDriversList() {
@@ -64,7 +64,7 @@ public class ApplicationManager {
                 System.out.println("Index value: " + (i + 1) + ". Driver information: " + driver);
             }
         } else {
-            System.out.println(messagesText.getNoDriverExists());
+            System.out.println(MessagesText.NO_DRIVER_EXISTS);
         }
 
     }
