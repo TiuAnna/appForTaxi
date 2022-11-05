@@ -1,25 +1,18 @@
 package app.fares.taxi;
 
-import java.io.IOException;
-import java.nio.file.Files;
-import java.nio.file.Path;
-import java.util.ArrayList;
-import java.util.List;
-import java.util.Scanner;
-
 public class ConsoleInterface extends ApplicationManager{
 
     public void mainLoop() throws Exception {
         while (true) {
             System.out.println(messagesText.getPleaseTypeCommand());
             System.out.println(messagesText.getTypeHelpToSeeCommands());
-            String action = in.nextLine();
+            String action = driverAccountHelper.in.nextLine();
             switch (action.toLowerCase()) {
                 case "help":
                     displayActionsList();
                     break;
                 case "print":
-                    printDriversList();
+                    displayDriversList();
                     break;
                 case "sign in":
                     signOnAsDriver();
@@ -28,19 +21,19 @@ public class ConsoleInterface extends ApplicationManager{
                     signOutFromDriverAccount();
                     break;
                 case "add":
-                    addNewDriver();
+                    driverAccountHelper.addNewDriver();
                     break;
                 case "edit":
-                    editDriver();
+                    driverAccountHelper.editDriver();
                     break;
                 case "delete":
-                    deleteDriver();
+                    driverAccountHelper.deleteDriver();
                     break;
                 case "calculate":
-                    calculateTheCheapestFare();
+                    driverAccountHelper.calculateTheCheapestFare();
                     break;
                 case "history":
-                    viewCostsHistory();
+                    driverAccountHelper.viewCostsHistory();
                     break;
                 case "exit":
                     finishAppForTaxi();
