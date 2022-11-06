@@ -61,15 +61,11 @@ public class ApplicationManager {
             System.out.println("All drivers list:");
             for (int i = 0; i < driversInfo.size(); i++) {
                 DriverData driver = driversInfo.get(i);
-                System.out.println("Index value: " + (i + 1) + ". Driver information: " + driver);
+                System.out.println("Index value: " + (i + 1) + ". " + driver);
             }
         } else {
             System.out.println(MessagesText.NO_DRIVER_EXISTS);
         }
 
     }
-
-//    public DriverAccountHelper getDriverAccountHelper() {
-//        return driverAccountHelper;
-//    }
 }

@@ -52,55 +52,59 @@ public class DriverAccountHelper {
         }
         System.out.println("Current driver info:");
         System.out.println(driversInfo.get(driverNumber));
-        String[] dataToEdit = {"your name", "your surname", "your email", "type of your vehicle", "base fare price",
-                "base fare distance"};
-        String[] selectedField = {"'name'", "'surname'", "'email'", "'vehicle'", "'fare'", "'distance'"};
-        for (int i = 0; i < dataToEdit.length; i++) {
-            System.out.println("If you what to edit " + dataToEdit[i] + " type " + selectedField[i]);
+        String[] dataToEdit = {MessagesText.NAME_VALUE, MessagesText.SURNAME_VALUE, MessagesText.EMAIL_VALUE,
+                MessagesText.VEHICLE_VALUE, MessagesText.BASE_FARE_VALUE, MessagesText.DISTANCE_VALUE};
+        for (String fieldName : dataToEdit) {
+            String chooseFiledToEdit = String.format(
+                    MessagesText.TEMPLATE_TYPE_COMMAND,
+                    "edit your " + fieldName,
+                    fieldName
+            );
+            System.out.println(chooseFiledToEdit);
         }
         boolean continueEditing = true;
         while (continueEditing) {
             String answer = in.nextLine();
             switch (answer.toLowerCase()) {
-                case "name":
+                case MessagesText.NAME_VALUE -> {
                     System.out.println("Type new value for " + dataToEdit[0]);
                     signedOnDriver.setName(in.nextLine());
-                    break;
-                case "surname":
+                }
+                case MessagesText.SURNAME_VALUE -> {
                     System.out.println("Type new value for " + dataToEdit[1]);
                     signedOnDriver.setSurname(in.nextLine());
-                    break;
-                case "email":
+                }
+                case MessagesText.EMAIL_VALUE -> {
                     System.out.println("Type new value for " + dataToEdit[2]);
                     signedOnDriver.setEmail(in.nextLine());
-                    break;
-                case "vehicle":
+                }
+                case MessagesText.VEHICLE_VALUE -> {
                     System.out.println("Type new value for " + dataToEdit[3]);
                     signedOnDriver.setVehicletype(in.nextLine());
-                    break;
-                case "fare":
+                }
+                case MessagesText.BASE_FARE_VALUE -> {
                     System.out.println("Type new value for " + dataToEdit[4]);
                     try {
                         signedOnDriver.setBaseFarePrice(Integer.parseInt(in.nextLine()));
                     } catch (NumberFormatException e) {
                         System.out.println(MessagesText.INCORRECT_PRICE_ERROR);
                     }
-                    break;
-                case "distance":
+                }
+                case MessagesText.DISTANCE_VALUE -> {
                     System.out.println("Type new value for " + dataToEdit[5]);
                     try {
                         signedOnDriver.setBaseFareDistance(Double.parseDouble(in.nextLine()));
                     } catch (NumberFormatException e) {
                         System.out.println(MessagesText.INCORRECT_DISTANCE_ERROR);
                     }
-                    break;
-                case "save":
+                }
+                case MessagesText.COMMAND_TO_SAVE_CHANGES -> {
                     System.out.println("All changes successfully saved");
                     continueEditing = false;
-                    break;
+                }
             }
             if (continueEditing) {
-            System.out.println("Type 'save' to save changes or choose next field to edit.");
+            System.out.println("Type '" + MessagesText.COMMAND_TO_SAVE_CHANGES + "' to save changes or choose next field to edit.");
             }
 
         }

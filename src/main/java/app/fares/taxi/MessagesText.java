@@ -12,11 +12,20 @@ public class MessagesText {
     public static final String COMMAND_TO_DISPLAY_DRIVERS = "print";
     public static final String COMMAND_TO_ADD_DRIVER = "add";
     public static final String COMMAND_TO_EXIT_APP = "exit";
+    public static final String COMMAND_TO_SAVE_CHANGES = "save";
+    public static final String COMMAND_TO_CHANGE_VALUE = "change";
+
+    public static final String NAME_VALUE = "name";
+    public static final String SURNAME_VALUE = "surname";
+    public static final String EMAIL_VALUE = "email";
+    public static final String VEHICLE_VALUE = "vehicle";
+    public static final String BASE_FARE_VALUE = "fare";
+    public static final String DISTANCE_VALUE = "distance";
 
     public static final String PLEASE_TYPE_COMMAND = "Please, type a command.";
     public static final String PLEASE_SIGN_IN = "You signed out. Sign in to manage driver account.";
 
-    private static final String TEMPLATE_TYPE_COMMAND = "If you want to %s, type '%s'.";
+    public static final String TEMPLATE_TYPE_COMMAND = "If you want to %s, type '%s'.";
     public static final String TYPE_HELP_TO_SEE_COMMANDS = String.format(
             TEMPLATE_TYPE_COMMAND,
             "see all currently possible commands",
@@ -57,6 +66,11 @@ public class MessagesText {
             TEMPLATE_TYPE_COMMAND,
             "exit the application",
             COMMAND_TO_EXIT_APP);
+    public static final String TYPE_COMMAND_TO_CHANGE_PASS = String.format(
+            TEMPLATE_TYPE_COMMAND,
+            "change the pass",
+            COMMAND_TO_CHANGE_VALUE);
+
     public static final String TYPE_PATH_TO_CSV_FILE = "Type path to the .csv file for fare calculation";
 
     public static final String EXIT_APP = "Exit the application.\n" + "See you next time. =)";
