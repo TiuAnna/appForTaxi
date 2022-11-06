@@ -22,6 +22,9 @@ public class MessagesText {
     public static final String BASE_FARE_VALUE = "fare";
     public static final String DISTANCE_VALUE = "distance";
 
+    public static final String[] FIELDS_OF_DRIVER_DATA = {"your name", "your surname", "your email", "type of your vehicle", "base fare price",
+            "base fare distance"};
+
     public static final String PLEASE_TYPE_COMMAND = "Please, type a command.";
     public static final String PLEASE_SIGN_IN = "You signed out. Sign in to manage driver account.";
 
@@ -68,7 +71,7 @@ public class MessagesText {
             COMMAND_TO_EXIT_APP);
     public static final String TYPE_COMMAND_TO_CHANGE_PASS = String.format(
             TEMPLATE_TYPE_COMMAND,
-            "change the pass",
+            "change the path",
             COMMAND_TO_CHANGE_VALUE);
 
     public static final String TYPE_PATH_TO_CSV_FILE = "Type path to the .csv file for fare calculation";

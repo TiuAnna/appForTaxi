@@ -13,6 +13,7 @@ public class DriverAccountHelper {
     Scanner in = new Scanner(System.in);
     DriverData signedOnDriver;
     int driverNumber;
+    String pathToCSVFile = null;
 
     public DriverAccountHelper(int driverNumber, ArrayList<DriverData> driversInfo) {
 
@@ -32,11 +33,9 @@ public class DriverAccountHelper {
 
     public void addNewDriver() {
         System.out.println("Register a new driver:");
-        String[] dataToInput = {"your name", "your surname", "your email", "type of your vehicle", "base fare price",
-                "base fare distance"};
-        String[] emptyMassive = new String[dataToInput.length];
-        for (int i = 0; i < dataToInput.length; i++) {
-            System.out.println("Please input " + dataToInput[i]);
+        String[] emptyMassive = new String[MessagesText.FIELDS_OF_DRIVER_DATA.length];
+        for (int i = 0; i < MessagesText.FIELDS_OF_DRIVER_DATA.length; i++) {
+            System.out.println("Please input " + MessagesText.FIELDS_OF_DRIVER_DATA[i]);
             emptyMassive[i] = in.nextLine();
         }
         DriverData driverData = new DriverData(emptyMassive[0], emptyMassive[1], emptyMassive[2], emptyMassive[3],
@@ -54,11 +53,11 @@ public class DriverAccountHelper {
         System.out.println(driversInfo.get(driverNumber));
         String[] dataToEdit = {MessagesText.NAME_VALUE, MessagesText.SURNAME_VALUE, MessagesText.EMAIL_VALUE,
                 MessagesText.VEHICLE_VALUE, MessagesText.BASE_FARE_VALUE, MessagesText.DISTANCE_VALUE};
-        for (String fieldName : dataToEdit) {
+        for (int i = 0; i < dataToEdit.length; i++) {
             String chooseFiledToEdit = String.format(
                     MessagesText.TEMPLATE_TYPE_COMMAND,
-                    "edit your " + fieldName,
-                    fieldName
+                    "edit " + MessagesText.FIELDS_OF_DRIVER_DATA[i],
+                    dataToEdit[i]
             );
             System.out.println(chooseFiledToEdit);
         }
@@ -104,7 +103,7 @@ public class DriverAccountHelper {
                 }
             }
             if (continueEditing) {
-            System.out.println("Type '" + MessagesText.COMMAND_TO_SAVE_CHANGES + "' to save changes or choose next field to edit.");
+                System.out.println("Type '" + MessagesText.COMMAND_TO_SAVE_CHANGES + "' to save changes or choose next field to edit.");
             }
 
         }
@@ -131,8 +130,18 @@ public class DriverAccountHelper {
         if (!isUserSignedOn()) {
             return;
         }
-        System.out.println(MessagesText.TYPE_PATH_TO_CSV_FILE);
-        String pathToCSVFile = in.nextLine();
+        if (pathToCSVFile == null) {
+            System.out.println(MessagesText.TYPE_PATH_TO_CSV_FILE);
+            pathToCSVFile = in.nextLine();
+        } else {
+            System.out.println("Current path is " + pathToCSVFile);
+            System.out.println(MessagesText.TYPE_COMMAND_TO_CHANGE_PASS);
+            String isChangingNeeded = in.nextLine();
+            if (isChangingNeeded.equalsIgnoreCase(MessagesText.COMMAND_TO_CHANGE_VALUE)) {
+                System.out.println(MessagesText.TYPE_PATH_TO_CSV_FILE);
+                pathToCSVFile = in.nextLine();
+            }
+        }
         List<String> fileLines = Files.readAllLines(Path.of(pathToCSVFile));
         for (String line : fileLines) {
             String[] csvFileOneLineInfo = line.split(",");

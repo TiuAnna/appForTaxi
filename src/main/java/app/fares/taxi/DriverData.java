@@ -10,23 +10,6 @@ public class DriverData {
     private int baseFarePrice;
     private double baseFareDistance;
 
-    public String getValue(int index) {
-        int value;
-        if (index == 0) {
-            return name;
-        } else if (index == 1) {
-            return surname;
-        } else if (index == 2) {
-            return email;
-        } else if (index == 3) {
-            return vehicletype;
-        } else if (index == 4) {
-            return String.valueOf(baseFarePrice);
-        } else {
-            return String.valueOf(baseFareDistance);
-        }
-    }
-
     public String getName() {
         return name;
     }
@@ -94,9 +77,9 @@ public class DriverData {
         return calculatedCosts;
     }
 
-    public void setCalculatedCosts(ArrayList<Double> calculatedCosts) {
-        this.calculatedCosts = calculatedCosts;
-    }
+//    public void setCalculatedCosts(ArrayList<Double> calculatedCosts) {
+//        this.calculatedCosts = calculatedCosts;
+//    }
 
     @Override
     public boolean equals(Object obj) {
