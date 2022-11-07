@@ -66,23 +66,23 @@ public class DriverAccountHelper {
             String answer = in.nextLine();
             switch (answer.toLowerCase()) {
                 case MessagesText.NAME_VALUE -> {
-                    System.out.println("Type new value for " + dataToEdit[0]);
+                    System.out.println(MessagesText.TYPE_NEW_NAME);
                     signedOnDriver.setName(in.nextLine());
                 }
                 case MessagesText.SURNAME_VALUE -> {
-                    System.out.println("Type new value for " + dataToEdit[1]);
+                    System.out.println(MessagesText.TYPE_NEW_SURNAME);
                     signedOnDriver.setSurname(in.nextLine());
                 }
                 case MessagesText.EMAIL_VALUE -> {
-                    System.out.println("Type new value for " + dataToEdit[2]);
+                    System.out.println(MessagesText.TYPE_NEW_EMAIL);
                     signedOnDriver.setEmail(in.nextLine());
                 }
                 case MessagesText.VEHICLE_VALUE -> {
-                    System.out.println("Type new value for " + dataToEdit[3]);
+                    System.out.println(MessagesText.TYPE_NEW_VEHICLE);
                     signedOnDriver.setVehicletype(in.nextLine());
                 }
                 case MessagesText.BASE_FARE_VALUE -> {
-                    System.out.println("Type new value for " + dataToEdit[4]);
+                    System.out.println(MessagesText.TYPE_NEW_FARE);
                     try {
                         signedOnDriver.setBaseFarePrice(Integer.parseInt(in.nextLine()));
                     } catch (NumberFormatException e) {
@@ -90,7 +90,7 @@ public class DriverAccountHelper {
                     }
                 }
                 case MessagesText.DISTANCE_VALUE -> {
-                    System.out.println("Type new value for " + dataToEdit[5]);
+                    System.out.println(MessagesText.TYPE_NEW_DISTANCE);
                     try {
                         signedOnDriver.setBaseFareDistance(Double.parseDouble(in.nextLine()));
                     } catch (NumberFormatException e) {
@@ -103,7 +103,7 @@ public class DriverAccountHelper {
                 }
             }
             if (continueEditing) {
-                System.out.println("Type '" + MessagesText.COMMAND_TO_SAVE_CHANGES + "' to save changes or choose next field to edit.");
+                System.out.println(MessagesText.SAVE_CHANGES);
             }
 
         }
@@ -138,11 +138,19 @@ public class DriverAccountHelper {
             System.out.println(MessagesText.TYPE_COMMAND_TO_CHANGE_PASS);
             String isChangingNeeded = in.nextLine();
             if (isChangingNeeded.equalsIgnoreCase(MessagesText.COMMAND_TO_CHANGE_VALUE)) {
-                System.out.println(MessagesText.TYPE_PATH_TO_CSV_FILE);
-                pathToCSVFile = in.nextLine();
+                pathToCSVFile = null;
+                calculateTheCheapestFare();
+                return;
             }
         }
-        List<String> fileLines = Files.readAllLines(Path.of(pathToCSVFile));
+        List<String> fileLines = null;
+        try {
+            fileLines = Files.readAllLines(Path.of(pathToCSVFile));
+        } catch (IOException e) {
+            System.out.println(MessagesText.INCORRECT_PATH_ERROR);
+            pathToCSVFile = null;
+            return;
+        }
         for (String line : fileLines) {
             String[] csvFileOneLineInfo = line.split(",");
             double[] oneLineValues = new double[csvFileOneLineInfo.length];
@@ -167,14 +175,14 @@ public class DriverAccountHelper {
             return;
         }
         System.out.println("Do you really want to delete your account?");
-        System.out.println("Type 'yes' to confirm deletion.");
+        System.out.println(MessagesText.CONFIRM_DELETION);
         String answer = in.nextLine();
-        if (answer.equalsIgnoreCase("yes")) {
+        if (answer.equalsIgnoreCase(MessagesText.COMMAND_TO_CONFIRM_ACTION)) {
             driversInfo.remove(driverNumber);
             System.out.println("Account was successfully deleted.");
             signedOnDriver = null;
         } else {
-            System.out.println("Deletion is canceled.");
+            System.out.println(MessagesText.DELETION_CANCELED);
         }
     }
 }
