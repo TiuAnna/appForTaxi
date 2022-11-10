@@ -1,91 +1,138 @@
 package app.fares.taxi;
 
+/**
+ * Contains output messages used in the program + available commands
+ *
+ * @author Anna Tiulkacheva
+ * @version 1.0
+ * @since 2022-11-10
+ */
+
 public class MessagesText {
 
-    String pleaseTypeCommand = "Please, type a command.";
-    String typeHelpToSeeCommands = "To see all currently possible commands, type '" + getCommandFromUser(0) +"'.";
-    String pleaseSignIn = "You signed out. Sign in to manage driver account.";
-    String typeCommandToSignIn = "If you want to sign in, type 'sign in'.";
-    String typeCommandToEditDriver = "If you want to edit selected driver, type 'edit'.";
-    String typeCommandToDeleteDriver = "If you want to delete your account, type 'delete'.";
-    String typeCommandToCalculateFare = "If you want to calculate the cheapest fare, type 'calculate'.";
-    String typeCommandToSeeHistory = "If you want to view the history of calculated costs, type 'history'.";
-    String typeCommandToSignOut = "If you want to sign out, type 'sign out'.";
-    String typeCommandToSeeAllDrivers = "If you want to print drivers list, type 'print'.";
-    String typeCommandToRegisterNewDriver = "If you want to add new driver, type 'add'.";
-    String exitApp = "Exit the application.\n" + "See you next time. =)";
+    public static final String COMMAND_TO_DISPLAY_COMMANDS = "help";
+    public static final String COMMAND_TO_SIGN_IN = "sign in";
+    public static final String COMMAND_TO_EDIT_ACCOUNT = "edit";
+    public static final String COMMAND_TO_DELETE_ACCOUNT = "delete";
+    public static final String COMMAND_TO_CALCULATE_FARE = "calculate";
+    public static final String COMMAND_TO_DISPLAY_COSTS_HISTORY = "history";
+    public static final String COMMAND_TO_SIGN_OUT = "sign out";
+    public static final String COMMAND_TO_DISPLAY_DRIVERS = "print";
+    public static final String COMMAND_TO_ADD_DRIVER = "add";
+    public static final String COMMAND_TO_EXIT_APP = "exit";
+    public static final String COMMAND_TO_SAVE_CHANGES = "save";
+    public static final String COMMAND_TO_CHANGE_VALUE = "change";
+    public static final String COMMAND_TO_CONFIRM_ACTION = "yes";
 
-    String noCalculatedCosts = "There is no calculated costs yet.";
-    String typePathToCSVFile = "Type path to the .csv file for fare calculation";
-    String noDriverExists = "There is no drivers yet.\n" + "Please use command 'add' to create new one.";
+    public static final String NAME_VALUE = "name";
+    public static final String SURNAME_VALUE = "surname";
+    public static final String EMAIL_VALUE = "email";
+    public static final String VEHICLE_VALUE = "vehicle";
+    public static final String BASE_FARE_VALUE = "fare";
+    public static final String DISTANCE_VALUE = "distance";
+
+    public static final String[] FIELDS_OF_DRIVER_DATA = {"your name", "your surname", "your email",
+            "type of your vehicle", "base fare price", "base fare distance"};
+
+    public static final String PLEASE_TYPE_COMMAND = "Please, type a command.";
+    public static final String PLEASE_SIGN_IN = "You are signed out. Sign in to manage driver account.";
+
+    public static final String TEMPLATE_TYPE_COMMAND = "If you want to %s, type '%s'.";
+    public static final String TYPE_HELP_TO_SEE_COMMANDS = String.format(
+            TEMPLATE_TYPE_COMMAND,
+            "see all currently possible commands",
+            COMMAND_TO_DISPLAY_COMMANDS);
+    public static final String TYPE_COMMAND_TO_SIGN_IN = String.format(
+            TEMPLATE_TYPE_COMMAND,
+            "sign in",
+            COMMAND_TO_SIGN_IN);
+    public static final String TYPE_COMMAND_TO_EDIT_DRIVER = String.format(
+            TEMPLATE_TYPE_COMMAND,
+            "edit selected driver",
+            COMMAND_TO_EDIT_ACCOUNT);
+    public static final String TYPE_COMMAND_TO_DELETE_DRIVER = String.format(
+            TEMPLATE_TYPE_COMMAND,
+            "delete your account",
+            COMMAND_TO_DELETE_ACCOUNT);
+    public static final String TYPE_COMMAND_TO_CALCULATE_FARE = String.format(
+            TEMPLATE_TYPE_COMMAND,
+            "calculate the cheapest fare",
+            COMMAND_TO_CALCULATE_FARE);
+    public static final String TYPE_COMMAND_TO_SEE_HISTORY = String.format(
+            TEMPLATE_TYPE_COMMAND,
+            "view the history of calculated costs",
+            COMMAND_TO_DISPLAY_COSTS_HISTORY);
+    public static final String TYPE_COMMAND_TO_SIGN_OUT = String.format(
+            TEMPLATE_TYPE_COMMAND,
+            "sign out",
+            COMMAND_TO_SIGN_OUT);
+    public static final String TYPE_COMMAND_TO_SEE_ALL_DRIVERS = String.format(
+            TEMPLATE_TYPE_COMMAND,
+            "print drivers list",
+            COMMAND_TO_DISPLAY_DRIVERS);
+    public static final String TYPE_COMMAND_TO_ADD_DRIVER = String.format(
+            TEMPLATE_TYPE_COMMAND,
+            "add new driver",
+            COMMAND_TO_ADD_DRIVER);
+    public static final String TYPE_COMMAND_TO_FINISH_APP = String.format(
+            TEMPLATE_TYPE_COMMAND,
+            "exit the application",
+            COMMAND_TO_EXIT_APP);
+    public static final String TYPE_COMMAND_TO_CHANGE_PASS = String.format(
+            TEMPLATE_TYPE_COMMAND,
+            "change the path",
+            COMMAND_TO_CHANGE_VALUE);
+
+    public static final String TEMPLATE_TYPE_TO = "Type %s to %s.";
+    public static final String TYPE_PATH_TO_CSV_FILE = String.format(
+            TEMPLATE_TYPE_TO,
+            "path",
+            "the .csv file for fare calculation");
+    public static final String CONFIRM_DELETION = String.format(
+            TEMPLATE_TYPE_TO,
+            "'" + COMMAND_TO_CONFIRM_ACTION + "'",
+            "confirm deletion");
+    public static final String SAVE_CHANGES = String.format(
+            TEMPLATE_TYPE_TO,
+            "'" + COMMAND_TO_SAVE_CHANGES + "'",
+            "save changes and leave editor or choose next field to edit");
+
+    public static final String TYPE_INDEX_TO_SIGN_IN = "Type the index of driver to sign in account";
+
+    private static final String TEMPLATE_INPUT_CORRECT_VALUE = "Please input correct %s. %s is required.";
+    public static final String INPUT_CORRECT_PRICE = String.format(
+            TEMPLATE_INPUT_CORRECT_VALUE,
+            FIELDS_OF_DRIVER_DATA[4],
+            "Integer"
+    );
+    public static final String INPUT_CORRECT_DISTANCE = String.format(
+            TEMPLATE_INPUT_CORRECT_VALUE,
+            FIELDS_OF_DRIVER_DATA[5],
+            "Integer or decimal"
+    );
+
+    public static final String INCORRECT_PATH_ERROR = "The system cannot find the path specified.";
+    public static final String INCORRECT_COMMAND_ERROR = "Command is incorrect.";
+
+    public static final String FINISH_CALCULATION = "Calculation process is canceled.";
+
+    public static final String EXIT_APP = "Exit the application.\n" + "See you next time. =)";
+    public static final String NO_CALCULATED_COSTS = "There is no calculated costs yet.";
+    public static final String NO_DRIVER_EXISTS = "There are no drivers yet.\n" + "Please use command '" + COMMAND_TO_ADD_DRIVER + "' to create new one.";
+
+    private static final String TEMPLATE_VALUE_ERROR = "%s was not set due to incorrect value";
+    public static final String INCORRECT_PRICE_ERROR = String.format(TEMPLATE_VALUE_ERROR, "Base fare price");
+    public static final String INCORRECT_DISTANCE_ERROR = String.format(TEMPLATE_VALUE_ERROR, "Base fare distance");
 
 
-    public String getCommandFromUser(int index) {
-        String[] commandFromUser = {"help", "sign in", "edit", "delete", "calculate", "history", "sign out", "print", "add",
-                "exit"};
-        return commandFromUser[index];
-    }
+    public static final String DELETION_CANCELED = "Deletion is canceled.";
 
-
-
-    public String getNoDriverExists() {
-        return noDriverExists;
-    }
-
-    public String getTypePathToCSVFile() {
-        return typePathToCSVFile;
-    }
-
-    public String getNoCalculatedCosts() {
-        return noCalculatedCosts;
-    }
-
-    public String getTypeCommandToSignIn() {
-        return typeCommandToSignIn;
-    }
-
-    public String getTypeCommandToEditDriver() {
-        return typeCommandToEditDriver;
-    }
-
-    public String getTypeCommandToDeleteDriver() {
-        return typeCommandToDeleteDriver;
-    }
-
-    public String getTypeCommandToCalculateFare() {
-        return typeCommandToCalculateFare;
-    }
-
-    public String getTypeCommandToSeeHistory() {
-        return typeCommandToSeeHistory;
-    }
-
-    public String getTypeCommandToSignOut() {
-        return typeCommandToSignOut;
-    }
-
-    public String getTypeCommandToSeeAllDrivers() {
-        return typeCommandToSeeAllDrivers;
-    }
-
-    public String getTypeCommandToRegisterNewDriver() {
-        return typeCommandToRegisterNewDriver;
-    }
-
-    public String getExitApp() {
-        return exitApp;
-    }
-
-    public String getPleaseTypeCommand() {
-        return pleaseTypeCommand;
-    }
-
-    public String getTypeHelpToSeeCommands() {
-        return typeHelpToSeeCommands;
-    }
-
-    public String getPleaseSignIn() {
-        return pleaseSignIn;
-    }
+    private static final String TEMPLATE_NEW_VALUE = "Type new value for %s";
+    public static final String TYPE_NEW_NAME = String.format(TEMPLATE_NEW_VALUE, FIELDS_OF_DRIVER_DATA[0]);
+    public static final String TYPE_NEW_SURNAME = String.format(TEMPLATE_NEW_VALUE, FIELDS_OF_DRIVER_DATA[1]);
+    public static final String TYPE_NEW_EMAIL = String.format(TEMPLATE_NEW_VALUE, FIELDS_OF_DRIVER_DATA[2]);
+    public static final String TYPE_NEW_VEHICLE = String.format(TEMPLATE_NEW_VALUE, FIELDS_OF_DRIVER_DATA[3]);
+    public static final String TYPE_NEW_FARE = String.format(TEMPLATE_NEW_VALUE, FIELDS_OF_DRIVER_DATA[4]);
+    public static final String TYPE_NEW_DISTANCE = String.format(TEMPLATE_NEW_VALUE, FIELDS_OF_DRIVER_DATA[5]);
 
 }
