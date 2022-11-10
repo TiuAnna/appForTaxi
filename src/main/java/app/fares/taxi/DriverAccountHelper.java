@@ -37,12 +37,47 @@ public class DriverAccountHelper {
         for (int i = 0; i < MessagesText.FIELDS_OF_DRIVER_DATA.length; i++) {
             System.out.println("Please input " + MessagesText.FIELDS_OF_DRIVER_DATA[i]);
             emptyMassive[i] = in.nextLine();
+            if (MessagesText.FIELDS_OF_DRIVER_DATA[i].equalsIgnoreCase(MessagesText.FIELDS_OF_DRIVER_DATA[4])) {
+                isPriceCorrect(emptyMassive[i]);
+                while (!isPriceCorrect(emptyMassive[i])) {
+                    System.out.println(MessagesText.INCORRECT_PRICE_ERROR);
+                    System.out.println(MessagesText.INPUT_CORRECT_PRICE);
+                    emptyMassive[i] = in.nextLine();
+                    isPriceCorrect(emptyMassive[i]);
+                }
+            } else if (MessagesText.FIELDS_OF_DRIVER_DATA[i].equalsIgnoreCase(MessagesText.FIELDS_OF_DRIVER_DATA[5])) {
+                isDistanceCorrect(emptyMassive[i]);
+                while (!isDistanceCorrect(emptyMassive[i])) {
+                    System.out.println(MessagesText.INCORRECT_DISTANCE_ERROR);
+                    System.out.println(MessagesText.INPUT_CORRECT_DISTANCE);
+                    emptyMassive[i] = in.nextLine();
+                    isDistanceCorrect(emptyMassive[i]);
+                }
+            }
         }
         DriverData driverData = new DriverData(emptyMassive[0], emptyMassive[1], emptyMassive[2], emptyMassive[3],
                 Integer.parseInt(emptyMassive[4]), Double.parseDouble(emptyMassive[5]));
         driversInfo.add(driverData);
         System.out.println("New driver was successfully registered.");
         System.out.println("Driver's index is " + driversInfo.size());
+    }
+
+    private boolean isDistanceCorrect(String distanceValue) {
+        try {
+            double checkDistance= Double.parseDouble(distanceValue);
+        } catch (NumberFormatException e) {
+            return false;
+        }
+        return true;
+    }
+
+    private boolean isPriceCorrect(String priceValue) {
+        try {
+            int checkFare = Integer.parseInt(priceValue);
+        } catch (NumberFormatException e) {
+            return false;
+        }
+        return true;
     }
 
     public void editDriver() {
@@ -148,6 +183,7 @@ public class DriverAccountHelper {
             fileLines = Files.readAllLines(Path.of(pathToCSVFile));
         } catch (IOException e) {
             System.out.println(MessagesText.INCORRECT_PATH_ERROR);
+            System.out.println(MessagesText.FINISH_CALCULATION);
             pathToCSVFile = null;
             return;
         }

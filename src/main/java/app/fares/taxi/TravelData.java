@@ -15,24 +15,12 @@ public class TravelData {
         return distanceTraveled;
     }
 
-    public void setDistanceTraveled(double distanceTraveled) {
-        this.distanceTraveled = distanceTraveled;
-    }
-
     public double getTraveledUnit() {
         return traveledUnit;
     }
 
-    public void setTraveledUnit(double traveledUnit) {
-        this.traveledUnit = traveledUnit;
-    }
-
     public double getCostPerDistanceTraveled() {
         return costPerDistanceTraveled;
-    }
-
-    public void setCostPerDistanceTraveled(double costPerDistanceTraveled) {
-        this.costPerDistanceTraveled = costPerDistanceTraveled;
     }
 
 }

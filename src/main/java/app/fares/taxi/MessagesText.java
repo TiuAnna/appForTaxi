@@ -15,7 +15,6 @@ public class MessagesText {
     public static final String COMMAND_TO_SAVE_CHANGES = "save";
     public static final String COMMAND_TO_CHANGE_VALUE = "change";
     public static final String COMMAND_TO_CONFIRM_ACTION = "yes";
-//    public static final String COMMAND_TO_RETURN = "cancel";
 
     public static final String NAME_VALUE = "name";
     public static final String SURNAME_VALUE = "surname";
@@ -90,16 +89,31 @@ public class MessagesText {
             "'" + COMMAND_TO_SAVE_CHANGES + "'",
             "to save changes or choose next field to edit");
 
-    public static final String INCORRECT_PATH_ERROR = "Path is incorrect.";
+    private static final String TEMPLATE_INPUT_CORRECT_VALUE = "Please input correct %s. %s is required.";
+    public static final String INPUT_CORRECT_PRICE = String.format(
+            TEMPLATE_INPUT_CORRECT_VALUE,
+            FIELDS_OF_DRIVER_DATA[4],
+            "Integer"
+    );
+    public static final String INPUT_CORRECT_DISTANCE = String.format(
+            TEMPLATE_INPUT_CORRECT_VALUE,
+            FIELDS_OF_DRIVER_DATA[5],
+            "Integer or decimal"
+    );
+
+    public static final String INCORRECT_PATH_ERROR = "The system cannot find the path specified.";
     public static final String INCORRECT_COMMAND_ERROR = "Command is incorrect.";
+
+    public static final String FINISH_CALCULATION = "Calculation process is canceled.";
 
     public static final String EXIT_APP = "Exit the application.\n" + "See you next time. =)";
     public static final String NO_CALCULATED_COSTS = "There is no calculated costs yet.";
     public static final String NO_DRIVER_EXISTS = "There are no drivers yet.\n" + "Please use command '" + COMMAND_TO_ADD_DRIVER + "' to create new one.";
 
-    private static final String TEMPLATE_VALUE_ERROR = "%s was not changed due to incorrect value";
+    private static final String TEMPLATE_VALUE_ERROR = "%s was not set due to incorrect value";
     public static final String INCORRECT_PRICE_ERROR = String.format(TEMPLATE_VALUE_ERROR, "Base fare price");
     public static final String INCORRECT_DISTANCE_ERROR = String.format(TEMPLATE_VALUE_ERROR, "Base fare distance");
+
 
     public static final String DELETION_CANCELED = "Deletion is canceled.";
 

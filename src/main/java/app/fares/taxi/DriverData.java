@@ -77,10 +77,6 @@ public class DriverData {
         return calculatedCosts;
     }
 
-//    public void setCalculatedCosts(ArrayList<Double> calculatedCosts) {
-//        this.calculatedCosts = calculatedCosts;
-//    }
-
     @Override
     public boolean equals(Object obj) {
         if (obj == this) return true;
