@@ -1,5 +1,13 @@
 package app.fares.taxi;
 
+/**
+ * Contains output messages used in the program + available commands
+ *
+ * @author Anna Tiulkacheva
+ * @version 1.0
+ * @since 2022-11-10
+ */
+
 public class MessagesText {
 
     public static final String COMMAND_TO_DISPLAY_COMMANDS = "help";
@@ -87,7 +95,9 @@ public class MessagesText {
     public static final String SAVE_CHANGES = String.format(
             TEMPLATE_TYPE_TO,
             "'" + COMMAND_TO_SAVE_CHANGES + "'",
-            "to save changes or choose next field to edit");
+            "save changes and leave editor or choose next field to edit");
+
+    public static final String TYPE_INDEX_TO_SIGN_IN = "Type the index of driver to sign in account";
 
     private static final String TEMPLATE_INPUT_CORRECT_VALUE = "Please input correct %s. %s is required.";
     public static final String INPUT_CORRECT_PRICE = String.format(
@@ -124,16 +134,5 @@ public class MessagesText {
     public static final String TYPE_NEW_VEHICLE = String.format(TEMPLATE_NEW_VALUE, FIELDS_OF_DRIVER_DATA[3]);
     public static final String TYPE_NEW_FARE = String.format(TEMPLATE_NEW_VALUE, FIELDS_OF_DRIVER_DATA[4]);
     public static final String TYPE_NEW_DISTANCE = String.format(TEMPLATE_NEW_VALUE, FIELDS_OF_DRIVER_DATA[5]);
-
-
-
-
-
-
-
-
-
-
-
 
 }

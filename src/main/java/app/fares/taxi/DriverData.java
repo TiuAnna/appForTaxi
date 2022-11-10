@@ -2,6 +2,14 @@ package app.fares.taxi;
 
 import java.util.*;
 
+/**
+ * Constructor for a driver account data
+ *
+ * @author Anna Tiulkacheva
+ * @version 1.0
+ * @since 2022-11-10
+ */
+
 public class DriverData {
     private String name;
     private String surname;

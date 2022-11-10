@@ -7,6 +7,14 @@ import java.util.ArrayList;
 import java.util.List;
 import java.util.Scanner;
 
+/**
+ * Contains methods to manage driver account + method to create a new driver
+ *
+ * @author Anna Tiulkacheva
+ * @version 1.0
+ * @since 2022-11-10
+ */
+
 public class DriverAccountHelper {
 
     private ArrayList<DriverData> driversInfo;
@@ -38,20 +46,16 @@ public class DriverAccountHelper {
             System.out.println("Please input " + MessagesText.FIELDS_OF_DRIVER_DATA[i]);
             emptyMassive[i] = in.nextLine();
             if (MessagesText.FIELDS_OF_DRIVER_DATA[i].equalsIgnoreCase(MessagesText.FIELDS_OF_DRIVER_DATA[4])) {
-                isPriceCorrect(emptyMassive[i]);
                 while (!isPriceCorrect(emptyMassive[i])) {
                     System.out.println(MessagesText.INCORRECT_PRICE_ERROR);
                     System.out.println(MessagesText.INPUT_CORRECT_PRICE);
                     emptyMassive[i] = in.nextLine();
-                    isPriceCorrect(emptyMassive[i]);
                 }
             } else if (MessagesText.FIELDS_OF_DRIVER_DATA[i].equalsIgnoreCase(MessagesText.FIELDS_OF_DRIVER_DATA[5])) {
-                isDistanceCorrect(emptyMassive[i]);
                 while (!isDistanceCorrect(emptyMassive[i])) {
                     System.out.println(MessagesText.INCORRECT_DISTANCE_ERROR);
                     System.out.println(MessagesText.INPUT_CORRECT_DISTANCE);
                     emptyMassive[i] = in.nextLine();
-                    isDistanceCorrect(emptyMassive[i]);
                 }
             }
         }
@@ -118,17 +122,19 @@ public class DriverAccountHelper {
                 }
                 case MessagesText.BASE_FARE_VALUE -> {
                     System.out.println(MessagesText.TYPE_NEW_FARE);
-                    try {
-                        signedOnDriver.setBaseFarePrice(Integer.parseInt(in.nextLine()));
-                    } catch (NumberFormatException e) {
+                    String inputPrice = in.nextLine();
+                    if (isPriceCorrect(inputPrice)) {
+                        signedOnDriver.setBaseFarePrice(Integer.parseInt(inputPrice));
+                    } else {
                         System.out.println(MessagesText.INCORRECT_PRICE_ERROR);
                     }
                 }
                 case MessagesText.DISTANCE_VALUE -> {
                     System.out.println(MessagesText.TYPE_NEW_DISTANCE);
-                    try {
-                        signedOnDriver.setBaseFareDistance(Double.parseDouble(in.nextLine()));
-                    } catch (NumberFormatException e) {
+                    String inputDistance = in.nextLine();
+                    if (isDistanceCorrect(inputDistance)) {
+                        signedOnDriver.setBaseFareDistance(Double.parseDouble(inputDistance));
+                    } else {
                         System.out.println(MessagesText.INCORRECT_DISTANCE_ERROR);
                     }
                 }

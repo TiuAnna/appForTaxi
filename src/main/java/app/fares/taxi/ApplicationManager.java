@@ -2,6 +2,15 @@ package app.fares.taxi;
 
 import java.util.ArrayList;
 
+/**
+ * ApplicationManager is used as system manager
+ * Contains methods that are available for all users
+ *
+ * @author Anna Tiulkacheva
+ * @version 1.0
+ * @since 2022-11-10
+ */
+
 public class ApplicationManager {
     int driverNumber;
     ArrayList<DriverData> driversInfo = new ArrayList<>();
@@ -14,7 +23,7 @@ public class ApplicationManager {
             System.out.println(MessagesText.NO_DRIVER_EXISTS);
             return;
         }
-        System.out.println("Type the index of driver to sign in account");
+        System.out.println(MessagesText.TYPE_INDEX_TO_SIGN_IN);
 
         try {
             driverAccountHelper.driverNumber = Integer.parseInt(driverAccountHelper.in.nextLine()) - 1;

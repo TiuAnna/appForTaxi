@@ -1,5 +1,13 @@
 package app.fares.taxi;
 
+/**
+ * Application initial screen
+ *
+ * @author Anna Tiulkacheva
+ * @version 1.0
+ * @since 2022-11-10
+ */
+
 public class ConsoleInterface extends ApplicationManager {
 
     public void mainLoop() throws Exception {

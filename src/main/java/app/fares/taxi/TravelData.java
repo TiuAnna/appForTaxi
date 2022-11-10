@@ -1,5 +1,13 @@
 package app.fares.taxi;
 
+/**
+ * Constructor for a data from csv file used for fare calculation
+ *
+ * @author Anna Tiulkacheva
+ * @version 1.0
+ * @since 2022-11-10
+ */
+
 public class TravelData {
     private double distanceTraveled;
     private double traveledUnit;
