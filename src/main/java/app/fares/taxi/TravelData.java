@@ -1,5 +1,13 @@
 package app.fares.taxi;
 
+/**
+ * Constructor for a data from csv file used for fare calculation
+ *
+ * @author Anna Tiulkacheva
+ * @version 1.0
+ * @since 2022-11-10
+ */
+
 public class TravelData {
     private double distanceTraveled;
     private double traveledUnit;
@@ -15,24 +23,12 @@ public class TravelData {
         return distanceTraveled;
     }
 
-    public void setDistanceTraveled(double distanceTraveled) {
-        this.distanceTraveled = distanceTraveled;
-    }
-
     public double getTraveledUnit() {
         return traveledUnit;
     }
 
-    public void setTraveledUnit(double traveledUnit) {
-        this.traveledUnit = traveledUnit;
-    }
-
     public double getCostPerDistanceTraveled() {
         return costPerDistanceTraveled;
-    }
-
-    public void setCostPerDistanceTraveled(double costPerDistanceTraveled) {
-        this.costPerDistanceTraveled = costPerDistanceTraveled;
     }
 
 }

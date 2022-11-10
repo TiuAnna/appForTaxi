@@ -2,6 +2,14 @@ package app.fares.taxi;
 
 import java.util.*;
 
+/**
+ * Constructor for a driver account data
+ *
+ * @author Anna Tiulkacheva
+ * @version 1.0
+ * @since 2022-11-10
+ */
+
 public class DriverData {
     private String name;
     private String surname;
@@ -9,23 +17,6 @@ public class DriverData {
     private String vehicletype;
     private int baseFarePrice;
     private double baseFareDistance;
-
-    public String getValue(int index) {
-        int value;
-        if (index == 0) {
-            return name;
-        } else if (index == 1) {
-            return surname;
-        } else if (index == 2) {
-            return email;
-        } else if (index == 3) {
-            return vehicletype;
-        } else if (index == 4) {
-            return String.valueOf(baseFarePrice);
-        } else {
-            return String.valueOf(baseFareDistance);
-        }
-    }
 
     public String getName() {
         return name;
@@ -92,10 +83,6 @@ public class DriverData {
 
     public ArrayList<Double> getCalculatedCosts() {
         return calculatedCosts;
-    }
-
-    public void setCalculatedCosts(ArrayList<Double> calculatedCosts) {
-        this.calculatedCosts = calculatedCosts;
     }
 
     @Override
